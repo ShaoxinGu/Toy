@@ -1,8 +1,8 @@
 #pragma once
 
-#include "core.h"
+#include "Core.h"
 
-namespace Toy {
+namespace Toy{
 	class TOY_API Application
 	{
 	public:
