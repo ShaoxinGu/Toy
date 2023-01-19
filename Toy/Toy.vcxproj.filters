@@ -10,13 +10,13 @@
     <ClInclude Include="src\Toy\Application.h">
       <Filter>Toy</Filter>
     </ClInclude>
+    <ClInclude Include="src\Toy\Core.h">
+      <Filter>Toy</Filter>
+    </ClInclude>
     <ClInclude Include="src\Toy\EntryPoint.h">
       <Filter>Toy</Filter>
     </ClInclude>
     <ClInclude Include="src\Toy\Log.h">
-      <Filter>Toy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Toy\core.h">
       <Filter>Toy</Filter>
     </ClInclude>
   </ItemGroup>
