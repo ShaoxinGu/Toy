@@ -2,63 +2,90 @@
 
 #include "Toy/Events/Event.h"
 
-namespace Toy {
+#include <sstream>
 
-	class WindowResizeEvent : public Event
+namespace Toy
+{
+	class TOY_API MouseMovedEvent : public Event
 	{
-	public:
-		WindowResizeEvent(unsigned int width, unsigned int height)
-			: m_Width(width), m_Height(height) {}
+		MouseMovedEvent(float x, float y)
+			: m_MouseX(x), m_MouseY(y) {}
 
-		unsigned int GetWidth() const { return m_Width; }
-		unsigned int GetHeight() const { return m_Height; }
+		inline float GetX() const { return m_MouseX; }
+		inline float GetY() const { return m_MouseY; }
 
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
+			ss << "MouseMovedEvent:" << m_MouseX << "," << m_MouseY;
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(WindowResize)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+		EVENT_CLASS_TYPE(EventType::MouseMoved)
+		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput)
 	private:
-		unsigned int m_Width, m_Height;
+		float m_MouseX, m_MouseY;
 	};
 
-	class WindowCloseEvent : public Event
+	class TOY_API MouseScrolledEvent : public Event
 	{
-	public:
-		WindowCloseEvent() = default;
+		MouseScrolledEvent(float xOffset, float yOffset)
+			: m_XOffset(xOffset), m_YOffset(yOffset) {}
 
-		EVENT_CLASS_TYPE(WindowClose)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+		inline float GetXOffset() const { return m_XOffset; }
+		inline float GetYOffset() const { return m_YOffset; }
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "MouseMovedEvent:" << m_XOffset << "," << m_YOffset;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(EventType::MouseScrolled)
+		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput)
+	private:
+		float m_XOffset, m_YOffset;
 	};
 
-	class AppTickEvent : public Event
+	class TOY_API MouseButtonEvent : public Event
 	{
-	public:
-		AppTickEvent() = default;
+		inline int GetMouseButton() const { return m_Button; }
 
-		EVENT_CLASS_TYPE(AppTick)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput)
+	protected:
+		MouseScrolledEvent(int button)
+			: m_Button(button) {}
+		int m_Button;
 	};
 
-	class AppUpdateEvent : public Event
+	class TOY_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
-		AppUpdateEvent() = default;
+		MouseButtonPressedEvent(int button)
+			: MouseButtonEvent(button) {}
 
-		EVENT_CLASS_TYPE(AppUpdate)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+		std::string ToString() const override
+		{
+			std::stringsteam ss;
+			ss << "MouseButtonPressedEvent:" << m_Button;
+			return ss.str();
+		}
+		EVENT_CLASS_TYPE(EventType::MouseButtonPressed)
 	};
 
-	class AppRenderEvent : public Event
+	class TOY_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
-		AppRenderEvent() = default;
+		MouseButtonReleasedEvent(int button)
+			: MouseButtonEvent(button) {}
 
-		EVENT_CLASS_TYPE(AppRender)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+		std::string ToString() const override
+		{
+			std::stringsteam ss;
+			ss << "MouseButtonReleasedEvent:" << m_Button;
+			return ss.str();
+		}
+		EVENT_CLASS_TYPE(EventType::MouseButtonReleased)
 	};
 }

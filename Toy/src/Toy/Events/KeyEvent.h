@@ -2,63 +2,58 @@
 
 #include "Toy/Events/Event.h"
 
-namespace Toy {
+#include <sstream>
 
-	class WindowResizeEvent : public Event
+namespace Toy
+{
+
+	class TOY_API KeyEvent : public Event
 	{
 	public:
-		WindowResizeEvent(unsigned int width, unsigned int height)
-			: m_Width(width), m_Height(height) {}
+		inline int GetKeyCode() const { return m_KeyCode; }
 
-		unsigned int GetWidth() const { return m_Width; }
-		unsigned int GetHeight() const { return m_Height; }
+		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
+
+	protected:
+		KeyEvent(int keyCode)
+			: m_KeyCode(keyCode) {}
+
+		int m_KeyCode;
+	};
+
+	class TOY_API KeyPressedEvent : public KeyEvent
+	{
+	public:
+		KeyPressedEvent(int keyCode, int repeatCount)
+			: KeyEvent(keyCode), m_RepeatCount(repeatCount) {}
+
+		inline int GetRepeatCount() const { return m_RepeatCount; }
 
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
+			ss << "KeyPressedEvent:" << m_KeyCode << "(" << m_RepeatCount << " repeats)";
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(WindowResize)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+		EVENT_CLASS_TYPE(EventType::KeyPressed)
 	private:
-		unsigned int m_Width, m_Height;
+		m_RepeatCount;
 	};
 
-	class WindowCloseEvent : public Event
+	class TOY_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
-		WindowCloseEvent() = default;
+		KeyReleasedEvent(int keyCode)
+			: KeyEvent(keyCode) {}
 
-		EVENT_CLASS_TYPE(WindowClose)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
-	};
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyReleasedEveny:" << m_KeyCode;
+			return ss.str();
+		}
 
-	class AppTickEvent : public Event
-	{
-	public:
-		AppTickEvent() = default;
-
-		EVENT_CLASS_TYPE(AppTick)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
-	};
-
-	class AppUpdateEvent : public Event
-	{
-	public:
-		AppUpdateEvent() = default;
-
-		EVENT_CLASS_TYPE(AppUpdate)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
-	};
-
-	class AppRenderEvent : public Event
-	{
-	public:
-		AppRenderEvent() = default;
-
-		EVENT_CLASS_TYPE(AppRender)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+		EVENT_CLASS_TYPE(EventType::KeyReleased)
 	};
 }

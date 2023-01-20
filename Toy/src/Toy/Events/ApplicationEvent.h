@@ -2,9 +2,11 @@
 
 #include "Toy/Events/Event.h"
 
+#include <sstream>
+
 namespace Toy {
 
-	class WindowResizeEvent : public Event
+	class TOY_API WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
@@ -26,7 +28,7 @@ namespace Toy {
 		unsigned int m_Width, m_Height;
 	};
 
-	class WindowCloseEvent : public Event
+	class TOY_API WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() = default;
@@ -35,7 +37,7 @@ namespace Toy {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppTickEvent : public Event
+	class TOY_API AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() = default;
@@ -44,7 +46,7 @@ namespace Toy {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppUpdateEvent : public Event
+	class TOY_API AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() = default;
@@ -53,7 +55,7 @@ namespace Toy {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AppRenderEvent : public Event
+	class TOY_API AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() = default;
