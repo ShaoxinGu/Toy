@@ -36,9 +36,9 @@ namespace Toy
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(EventType::KeyPressed)
+		EVENT_CLASS_TYPE(KeyPressed)
 	private:
-		m_RepeatCount;
+		int m_RepeatCount;
 	};
 
 	class TOY_API KeyReleasedEvent : public KeyEvent
@@ -54,6 +54,6 @@ namespace Toy
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(EventType::KeyReleased)
+		EVENT_CLASS_TYPE(KeyReleased)
 	};
 }

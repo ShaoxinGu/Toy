@@ -21,8 +21,8 @@ namespace Toy
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(EventType::MouseMoved)
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput)
+		EVENT_CLASS_TYPE(MouseMoved)
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	private:
 		float m_MouseX, m_MouseY;
 	};
@@ -42,8 +42,8 @@ namespace Toy
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(EventType::MouseScrolled)
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput)
+		EVENT_CLASS_TYPE(MouseScrolled)
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	private:
 		float m_XOffset, m_YOffset;
 	};
@@ -52,9 +52,9 @@ namespace Toy
 	{
 		inline int GetMouseButton() const { return m_Button; }
 
-		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput)
+		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	protected:
-		MouseScrolledEvent(int button)
+		MouseButtonEvent(int button)
 			: m_Button(button) {}
 		int m_Button;
 	};
@@ -67,11 +67,11 @@ namespace Toy
 
 		std::string ToString() const override
 		{
-			std::stringsteam ss;
+			std::stringstream ss;
 			ss << "MouseButtonPressedEvent:" << m_Button;
 			return ss.str();
 		}
-		EVENT_CLASS_TYPE(EventType::MouseButtonPressed)
+		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
 	class TOY_API MouseButtonReleasedEvent : public MouseButtonEvent
@@ -82,10 +82,10 @@ namespace Toy
 
 		std::string ToString() const override
 		{
-			std::stringsteam ss;
+			std::stringstream ss;
 			ss << "MouseButtonReleasedEvent:" << m_Button;
 			return ss.str();
 		}
-		EVENT_CLASS_TYPE(EventType::MouseButtonReleased)
+		EVENT_CLASS_TYPE(MouseButtonReleased)
 	};
 }

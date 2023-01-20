@@ -4,6 +4,9 @@
     <Filter Include="Toy">
       <UniqueIdentifier>{0127880B-6D30-887C-F6AB-9E7C62B4937C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toy\Events">
+      <UniqueIdentifier>{C5C7AD81-B17F-EFCE-1A87-C82A065E8ABF}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Toy.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Toy\EntryPoint.h">
       <Filter>Toy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Toy\Events\ApplicationEvent.h">
+      <Filter>Toy\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Toy\Events\Event.h">
+      <Filter>Toy\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Toy\Events\KeyEvent.h">
+      <Filter>Toy\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Toy\Events\MouseEvent.h">
+      <Filter>Toy\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Toy\Log.h">
       <Filter>Toy</Filter>
