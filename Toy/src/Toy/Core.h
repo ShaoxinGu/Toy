@@ -9,3 +9,5 @@
 #else
 	#error Toy only support Windows!
 #endif // TOY_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)
