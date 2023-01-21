@@ -1,4 +1,5 @@
-#include<Toy.h>
+#include "toypch.h"
+#include <Toy.h>
 
 class Sandbox : public Toy::Application
 {

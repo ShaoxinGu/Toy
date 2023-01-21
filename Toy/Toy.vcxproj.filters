@@ -34,6 +34,7 @@
     <ClInclude Include="src\Toy\Log.h">
       <Filter>Toy</Filter>
     </ClInclude>
+    <ClInclude Include="src\toypch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Toy\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Toy\Log.cpp">
       <Filter>Toy</Filter>
     </ClCompile>
+    <ClCompile Include="src\toypch.cpp" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Toy/Events/Event.h"
-
-#include <sstream>
+#include "Event.h"
 
 namespace Toy
 {

@@ -2,9 +2,6 @@
 
 #include "Toy/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Toy
 {
 

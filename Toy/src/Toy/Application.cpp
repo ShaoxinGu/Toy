@@ -1,3 +1,4 @@
+#include "toypch.h"
 #include "Application.h"
 
 #include "Toy/Events/ApplicationEvent.h"

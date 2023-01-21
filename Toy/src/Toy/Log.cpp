@@ -1,3 +1,4 @@
+#include "toypch.h"
 #include "Log.h"
 
 namespace Toy {

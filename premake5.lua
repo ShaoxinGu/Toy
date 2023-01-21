@@ -19,6 +19,9 @@ project "Toy"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "toypch.h"
+	pchsource "Toy/src/toypch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -27,8 +30,8 @@ project "Toy"
 
 	includedirs
 	{
-		"%{prj.name}/src;",
-		"%{prj.name}/vendor/spdlog/include;"
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include"
 	}
 
 	filter "system:windows"
@@ -75,8 +78,8 @@ project "Sandbox"
 
 	includedirs
 	{
-		"Toy/vendor/spdlog/include",
-		"Toy/src"
+		"Toy/src",
+		"Toy/vendor/spdlog/include"
 	}
 
 	links
