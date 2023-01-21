@@ -8,14 +8,13 @@ workspace "Toy"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+startproject "Sandbox"
 
 -- Include directories relatives to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Toy/vendor/GLFW/include"
 
 include "Toy/vendor/GLFW"
-
-startproject "Sandbox"
 
 project "Toy"
 	location "Toy"
