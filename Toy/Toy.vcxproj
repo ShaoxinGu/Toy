@@ -152,6 +152,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Toy.h" />
     <ClInclude Include="src\Toy\Application.h" />
     <ClInclude Include="src\Toy\Core.h" />
@@ -161,9 +162,11 @@
     <ClInclude Include="src\Toy\Events\KeyEvent.h" />
     <ClInclude Include="src\Toy\Events\MouseEvent.h" />
     <ClInclude Include="src\Toy\Log.h" />
+    <ClInclude Include="src\Toy\Window.h" />
     <ClInclude Include="src\toypch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Toy\Application.cpp" />
     <ClCompile Include="src\Toy\Log.cpp" />
     <ClCompile Include="src\toypch.cpp">

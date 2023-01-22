@@ -1,4 +1,6 @@
 #include "toypch.h"
+#include "Toy/Log.h"
+#include "Toy/Core.h"
 #include "WindowsWindow.h"
 
 namespace Toy {
