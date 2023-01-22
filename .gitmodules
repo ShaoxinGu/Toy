@@ -1,6 +1,3 @@
 [submodule "Toy/vendor/spdlog"]
 	path = Toy/vendor/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "Toy/vendor/GLFW"]
-	path = Toy/vendor/GLFW
-	url = https://github.com/ShaoxinGu/glfw
