@@ -6,6 +6,7 @@ namespace Toy
 {
 	class TOY_API MouseMovedEvent : public Event
 	{
+	public:
 		MouseMovedEvent(float x, float y)
 			: m_MouseX(x), m_MouseY(y) {}
 
@@ -27,6 +28,7 @@ namespace Toy
 
 	class TOY_API MouseScrolledEvent : public Event
 	{
+	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
 			: m_XOffset(xOffset), m_YOffset(yOffset) {}
 
