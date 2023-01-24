@@ -18,11 +18,27 @@ namespace Toy {
 	{
 	}
 
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* layer)
+	{
+		m_LayerStack.PushOverlay(layer);
+	}
+
 	void Application::OnEvent(Event& e)
 	{
-		TOY_CORE_INFO("{0}", e);
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
+
+		for (auto it = m_LayerStack.end();it!=m_LayerStack.begin();)
+		{
+			(*--it)->OnEvent(e);
+			if(e.m_Handled)
+				break;
+		}
 	}
 
 	void Application::Run()
@@ -32,6 +48,8 @@ namespace Toy {
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 			m_Window->OnUpdate();
+			for(Layer* layer : m_LayerStack)
+				layer->OnUpdate();
 		}
 	}
 

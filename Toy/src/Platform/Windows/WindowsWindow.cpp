@@ -67,7 +67,6 @@ namespace Toy {
 			data.EventCallback(event);
 		});
 
-
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			switch (action)
