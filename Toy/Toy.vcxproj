@@ -84,6 +84,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -110,6 +111,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -137,6 +139,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -161,6 +164,8 @@
     <ClInclude Include="src\Toy\Events\Event.h" />
     <ClInclude Include="src\Toy\Events\KeyEvent.h" />
     <ClInclude Include="src\Toy\Events\MouseEvent.h" />
+    <ClInclude Include="src\Toy\Layer.h" />
+    <ClInclude Include="src\Toy\LayerStack.h" />
     <ClInclude Include="src\Toy\Log.h" />
     <ClInclude Include="src\Toy\Window.h" />
     <ClInclude Include="src\toypch.h" />
@@ -168,6 +173,8 @@
   <ItemGroup>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Toy\Application.cpp" />
+    <ClCompile Include="src\Toy\Layer.cpp" />
+    <ClCompile Include="src\Toy\LayerStack.cpp" />
     <ClCompile Include="src\Toy\Log.cpp" />
     <ClCompile Include="src\toypch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

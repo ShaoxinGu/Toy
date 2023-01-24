@@ -40,6 +40,12 @@
     <ClInclude Include="src\Toy\Events\MouseEvent.h">
       <Filter>Toy\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Toy\Layer.h">
+      <Filter>Toy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Toy\LayerStack.h">
+      <Filter>Toy</Filter>
+    </ClInclude>
     <ClInclude Include="src\Toy\Log.h">
       <Filter>Toy</Filter>
     </ClInclude>
@@ -53,6 +59,12 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Toy\Application.cpp">
+      <Filter>Toy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Toy\Layer.cpp">
+      <Filter>Toy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Toy\LayerStack.cpp">
       <Filter>Toy</Filter>
     </ClCompile>
     <ClCompile Include="src\Toy\Log.cpp">

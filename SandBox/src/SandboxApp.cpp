@@ -16,7 +16,8 @@ public:
 
 	void OnEvent(Toy::Event& event) override
 	{
-		TOY_TRACE("{0}", event);
+		TOY_INFO("ExampleLayer::OnEvent");
+		// TOY_TRACE("{0}", event);
 	}
 };
 

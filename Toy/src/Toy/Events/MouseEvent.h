@@ -16,7 +16,7 @@ namespace Toy
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseMovedEvent:" << m_MouseX << "," << m_MouseY;
+			ss << "MouseMovedEvent:" << GetX() << "," << GetY();
 			return ss.str();
 		}
 
@@ -38,7 +38,7 @@ namespace Toy
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseMovedEvent:" << m_XOffset << "," << m_YOffset;
+			ss << "MouseMovedEvent:" << GetXOffset() << "," << GetYOffset();
 			return ss.str();
 		}
 

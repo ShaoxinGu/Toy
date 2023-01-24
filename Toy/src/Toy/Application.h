@@ -24,7 +24,7 @@ namespace Toy{
 
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
-		LayerStack = m_LayerStack;
+		LayerStack m_LayerStack;
 	};
 
 	// To be defined in CLIENT

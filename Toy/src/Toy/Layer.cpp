@@ -10,4 +10,13 @@ namespace Toy{
     Layer::~Layer()
     {
     }
+    void Layer::OnAttach()
+    {
+    }
+    void Layer::OnDetach()
+    {
+    }
+    void Layer::OnUpdate()
+    {
+    }
 }
