@@ -125,7 +125,7 @@ namespace Toy {
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(m_window);
 
-			MouseScrolledEvent event((float)xPos, (float)yPos);
+			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
 		});
 	}

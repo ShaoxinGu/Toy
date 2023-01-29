@@ -53,8 +53,8 @@ project "Toy"
 
 		defines
 		{
-			"TOY_BUILD_DLL",
-			"TOY_PLATFORM_WINDOWS"
+			"TOY_PLATFORM_WINDOWS",
+			"TOY_BUILD_DLL"
 		}
 
 		postbuildcommands
@@ -93,8 +93,8 @@ project "Sandbox"
 
 	includedirs
 	{
-		"Toy/src",
-		"Toy/vendor/spdlog/include"
+		"Toy/vendor/spdlog/include",
+		"Toy/src"
 	}
 
 	links
@@ -114,12 +114,16 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "TOY_DEBUG"
+		
+		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "TOY_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 		
 	filter "configurations:Dist"
 		defines "TOY_DIST"
+		buildoptions "/MD"
 		optimize "On"
