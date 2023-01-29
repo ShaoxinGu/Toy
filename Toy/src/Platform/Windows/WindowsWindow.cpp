@@ -1,7 +1,11 @@
 #include "toypch.h"
-#include "Toy/Log.h"
-#include "Toy/Core.h"
 #include "WindowsWindow.h"
+
+#include "Toy/Events/ApplicationEvent.h"
+#include "Toy/Events/MouseEvent.h"
+#include "Toy/Events/KeyEvent.h"
+
+#include <glad/glad.h>
 
 namespace Toy {
 
@@ -46,6 +50,8 @@ namespace Toy {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		TOY_CORE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -60,15 +66,17 @@ namespace Toy {
 			data.EventCallback(event);
 		});
 
-		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window) {
+		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
+		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-
 			WindowCloseEvent event;
 			data.EventCallback(event);
 		});
 
-		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
 			switch (action)
 			{
 				case GLFW_PRESS:
@@ -155,4 +163,5 @@ namespace Toy {
 	{
 		return m_Data.VSync;
 	}
+
 }

@@ -1,5 +1,6 @@
 workspace "Toy"
 	architecture "x64"
+
 	configurations
 	{
 		"Debug",
@@ -9,12 +10,13 @@ workspace "Toy"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 startproject "Sandbox"
-
 -- Include directories relatives to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Toy/vendor/GLFW/include"
+IncludeDir["Glad"] = "Toy/vendor/Glad/include"
 
 include "Toy/vendor/GLFW"
+include "Toy/vendor/Glad"
 
 project "Toy"
 	location "Toy"
@@ -37,12 +39,14 @@ project "Toy"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "Toy"
 		defines
 		{
 			"TOY_PLATFORM_WINDOWS",
-			"TOY_BUILD_DLL"
+			"TOY_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -114,7 +119,6 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "TOY_DEBUG"
-		
 		buildoptions "/MDd"
 		symbols "On"
 		

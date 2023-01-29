@@ -7,3 +7,4 @@ int/
 *.user
 *.sln
 *.vcxproj
+*.vcxproj.filters

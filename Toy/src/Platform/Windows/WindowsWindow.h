@@ -1,12 +1,11 @@
 #pragma once
 
 #include "Toy/Window.h"
+
 #include <GLFW/glfw3.h>
-#include "Toy/Events/ApplicationEvent.h"
-#include "Toy/Events/MouseEvent.h"
-#include "Toy/Events/KeyEvent.h"
 
 namespace Toy {
+
 	class WindowsWindow : public Window
 	{
 	public:
@@ -39,4 +38,5 @@ namespace Toy {
 
 		WindowData m_Data;
 	};
+
 }

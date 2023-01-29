@@ -3,11 +3,12 @@
 
 #include "Toy/Log.h"
 
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace Toy {
 
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
+
 	Application::Application()
 	{
 		m_Window = std::unique_ptr<Window>(Window::Create());
@@ -47,9 +48,11 @@ namespace Toy {
 		{
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
-			m_Window->OnUpdate();
+
 			for(Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_Window->OnUpdate();
 		}
 	}
 
@@ -58,5 +61,5 @@ namespace Toy {
 		m_Running = false;
 		return true;
 	}
-}
 
+}

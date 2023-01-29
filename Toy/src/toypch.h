@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Toy/Log.h"
+
 #ifdef TOY_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif // TOY_PLATFORM_WINDOWS
