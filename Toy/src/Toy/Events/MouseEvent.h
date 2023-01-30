@@ -50,6 +50,7 @@ namespace Toy
 
 	class TOY_API MouseButtonEvent : public Event
 	{
+	public:
 		inline int GetMouseButton() const { return m_Button; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)

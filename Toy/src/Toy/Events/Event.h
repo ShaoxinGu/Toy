@@ -22,6 +22,7 @@ namespace Toy
 		AppUpdate,
 		AppRender,
 		KeyPressed,
+		KeyTyped,
 		KeyReleased,
 		MouseButtonPressed,
 		MouseButtonReleased,
