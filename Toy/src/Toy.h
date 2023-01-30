@@ -6,6 +6,8 @@
 #include "Toy/Layer.h"
 #include "Toy/Log.h"
 
+#include "Toy/ImGui/ImGuiLayer.h"
+
 // --- EntryPoint Bengin ---
 #include "Toy/EntryPoint.h"
 // ---- EntryPoint End ----

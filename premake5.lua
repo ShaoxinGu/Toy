@@ -14,9 +14,11 @@ startproject "Sandbox"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Toy/vendor/GLFW/include"
 IncludeDir["Glad"] = "Toy/vendor/Glad/include"
+IncludeDir["ImGui"] = "Toy/vendor/imgui"
 
 include "Toy/vendor/GLFW"
 include "Toy/vendor/Glad"
+include "Toy/vendor/imgui"
 
 project "Toy"
 	location "Toy"
@@ -40,13 +42,15 @@ project "Toy"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
