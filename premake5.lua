@@ -16,14 +16,19 @@ IncludeDir["GLFW"] = "Toy/vendor/GLFW/include"
 IncludeDir["Glad"] = "Toy/vendor/Glad/include"
 IncludeDir["ImGui"] = "Toy/vendor/imgui"
 
-include "Toy/vendor/GLFW"
-include "Toy/vendor/Glad"
-include "Toy/vendor/imgui"
+group "Dependencies"
+	include "Toy/vendor/GLFW"
+	include "Toy/vendor/Glad"
+	include "Toy/vendor/imgui"
+
+group ""
+
 
 project "Toy"
 	location "Toy"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "Off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("int/" .. outputdir .. "/%{prj.name}")
@@ -56,7 +61,6 @@ project "Toy"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -73,23 +77,24 @@ project "Toy"
 
 	filter "configurations:Debug"
 		defines "TOY_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "TOY_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 		
 	filter "configurations:Dist"
 		defines "TOY_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "Off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("int/" .. outputdir .. "/%{prj.name}")
@@ -113,7 +118,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -123,15 +127,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "TOY_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "TOY_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 		
 	filter "configurations:Dist"
 		defines "TOY_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
