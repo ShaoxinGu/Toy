@@ -10,6 +10,10 @@
 	#error Toy only support Windows!
 #endif // TOY_PLATFORM_WINDOWS
 
+#ifdef HZ_DEBUG
+#define HZ_ENABLE_ASSERTS
+#endif
+
 #ifdef TOY_ENABLE_ASSERTS
 #define TOY_ASSERT(...) { if(!(x)) { TOY_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); }}
 #define TOY_CORE_ASSERT(...) { if(!(x)) { TOY_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); }}
