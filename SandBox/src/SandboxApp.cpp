@@ -11,7 +11,7 @@ public:
 
 	void OnUpdate() override
 	{
-		TOY_INFO("ExampleLayer::Update");
+		// TOY_INFO("ExampleLayer::Update");
 	}
 
 	void OnEvent(Toy::Event& event) override
