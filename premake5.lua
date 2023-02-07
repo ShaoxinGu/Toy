@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Toy/vendor/GLFW/include"
 IncludeDir["Glad"] = "Toy/vendor/Glad/include"
 IncludeDir["ImGui"] = "Toy/vendor/imgui"
+IncludeDir["glm"] = "Toy/vendor/glm"
 
 group "Dependencies"
 	include "Toy/vendor/GLFW"
@@ -40,6 +41,8 @@ project "Toy"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs
@@ -48,7 +51,8 @@ project "Toy"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}",
 	}
 
 	links
@@ -56,7 +60,7 @@ project "Toy"
 		"GLFW",
 		"Glad",
 		"ImGui",
-		"opengl32.lib"
+		"opengl32.lib",
 	}
 
 	filter "system:windows"
@@ -108,7 +112,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Toy/vendor/spdlog/include",
-		"Toy/src"
+		"Toy/src",
+		"%{IncludeDir.glm}",
 	}
 
 	links
