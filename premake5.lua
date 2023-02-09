@@ -1,5 +1,6 @@
 workspace "Toy"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -9,7 +10,7 @@ workspace "Toy"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-startproject "Sandbox"
+
 -- Include directories relatives to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Toy/vendor/GLFW/include"
@@ -21,15 +22,14 @@ group "Dependencies"
 	include "Toy/vendor/GLFW"
 	include "Toy/vendor/Glad"
 	include "Toy/vendor/imgui"
-
 group ""
-
 
 project "Toy"
 	location "Toy"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
-	staticruntime "Off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("int/" .. outputdir .. "/%{prj.name}")
@@ -43,6 +43,11 @@ project "Toy"
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -64,7 +69,6 @@ project "Toy"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -74,31 +78,27 @@ project "Toy"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "TOY_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "TOY_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 		
 	filter "configurations:Dist"
 		defines "TOY_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "Off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("int/" .. outputdir .. "/%{prj.name}")
@@ -113,7 +113,8 @@ project "Sandbox"
 	{
 		"Toy/vendor/spdlog/include",
 		"Toy/src",
-		"%{IncludeDir.glm}",
+		"Toy/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -122,7 +123,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -133,14 +133,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "TOY_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "TOY_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 		
 	filter "configurations:Dist"
 		defines "TOY_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"

@@ -7,6 +7,8 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
+#include "Toy/ImGui/ImGuiLayer.h"
+
 namespace Toy{
 	class TOY_API Application
 	{
@@ -26,6 +28,7 @@ namespace Toy{
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:
