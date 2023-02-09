@@ -7,5 +7,3 @@
 [submodule "Toy/vendor/imgui"]
 	path = Toy/vendor/imgui
 	url = https://github.com/ShaoxinGu/imgui
-[submodule "imgui"]
-	branch = old_docking
