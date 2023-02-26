@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Toy/Window.h"
+#include "Toy/Renderer/RendererContext.h"
 
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 
 namespace Toy {
 
@@ -28,6 +29,7 @@ namespace Toy {
 		virtual void ShutDown();
 	private:
 		GLFWwindow* m_Window;
+		RendererContext* m_Context;
 
 		struct WindowData
 		{
