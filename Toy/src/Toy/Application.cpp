@@ -9,38 +9,6 @@ namespace Toy {
 
 	Application* Application::s_Instance = nullptr;
 
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
-	{
-		switch (type)
-		{
-		case Toy::ShaderDataType::Float:
-			return GL_FLOAT;
-		case Toy::ShaderDataType::Float2:
-			return GL_FLOAT;
-		case Toy::ShaderDataType::Float3:
-			return GL_FLOAT;
-		case Toy::ShaderDataType::Float4:
-			return GL_FLOAT;
-		case Toy::ShaderDataType::Mat3:
-			return GL_FLOAT;
-		case Toy::ShaderDataType::Mat4:
-			return GL_FLOAT;
-		case Toy::ShaderDataType::Int1:
-			return GL_INT;
-		case Toy::ShaderDataType::Int2:
-			return GL_INT;
-		case Toy::ShaderDataType::Int3:
-			return GL_INT;
-		case Toy::ShaderDataType::Int4:
-			return GL_INT;
-		case Toy::ShaderDataType::Bool:
-			return GL_BOOL;
-		}
-
-		TOY_CORE_ASSERT(false, "Unknown ShaderDataType!");
-		return 0;
-	}
-
 	Application::Application()
 	{
 		TOY_CORE_ASSERT(!s_Instance, "Application already exists!");
@@ -52,8 +20,7 @@ namespace Toy {
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
+		m_VertexArray.reset(VertexArray::Create());
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0,
@@ -61,36 +28,21 @@ namespace Toy {
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0,
 		};
 
+		std::shared_ptr<VertexBuffer> m_VertexBuffer;
 		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-
-		{
-			BufferLayout layout = {
-				{ ShaderDataType::Float3, "a_Position" },
-				{ ShaderDataType::Float4, "a_Color" }
-			};
-
-			m_VertexBuffer->SetLayout(layout);
-		}
-
-		uint32_t index = 0;
-		const auto& layout = m_VertexBuffer->GetLayout();
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index,
-				element.GetComponentCount(),
-				ShaderDataTypeToOpenGLBaseType(element.Type),
-				element.Normalized ? GL_TRUE : GL_FALSE,
-				layout.GetStride(),
-				(const void*)element.Offset
-			);
-			index++;
-		}
+		BufferLayout layout = {
+			{ ShaderDataType::Float3, "a_Position" },
+			{ ShaderDataType::Float4, "a_Color" }
+		};
+		m_VertexBuffer->SetLayout(layout);
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 
 		unsigned int indices[3] = {
 			0, 1, 2,
 		};
+		std::shared_ptr<IndexBuffer> m_IndexBuffer;
 		m_IndexBuffer.reset(IndexBuffer::Create(indices, 3));
+		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
 		std::string vertexSrc = R"(
 			#version 450 core
@@ -161,10 +113,9 @@ namespace Toy {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			m_Shader->Bind();
+			m_VertexArray->Bind();
 
-			glBindVertexArray(m_VertexArray);
-
-			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for(Layer* layer : m_LayerStack)
 				layer->OnUpdate();
