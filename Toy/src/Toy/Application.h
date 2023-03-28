@@ -4,8 +4,8 @@
 
 #include "Window.h"
 #include "Toy/LayerStack.h"
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
+#include "Toy/Events/Event.h"
+#include "Toy/Events/ApplicationEvent.h"
 
 #include "Toy/ImGui/ImGuiLayer.h"
 
