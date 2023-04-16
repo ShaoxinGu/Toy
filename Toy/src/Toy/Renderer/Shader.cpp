@@ -3,6 +3,8 @@
 
 #include "glad/glad.h"
 
+#include "glm/gtc/type_ptr.hpp"
+
 namespace Toy {
 	Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc)
         : m_RendererID(0)
@@ -63,29 +65,29 @@ namespace Toy {
         return id;
     }
 
-    void Shader::SetUniform1i(const std::string& name, int value)
+    void Shader::UploadUniform1i(const std::string& name, int value)
     {
         glUniform1i(GetUniformLocation(name), value);
     }
 
-    void Shader::SetUniform1f(const std::string& name, float value)
+    void Shader::UploadUniform1f(const std::string& name, float value)
     {
         glUniform1f(GetUniformLocation(name), value);
     }
 
-    void Shader::SetUniform1iv(const std::string& name, int count, int* value)
+    void Shader::UploadUniform1iv(const std::string& name, int count, int* value)
     {
         glUniform1iv(GetUniformLocation(name), count, value);
     }
 
-    void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
+    void Shader::UploadUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
     {
         glUniform4f(GetUniformLocation(name), v0, v1, v2, v3);
     }
 
-    void Shader::SetUniformMat4f(const std::string& name, glm::mat4& matrix)
+    void Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
     {
-        glUniformMatrix4fv(GetUniformLocation(name), 1, false, &matrix[0][0]);
+        glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
     }
 
     int Shader::GetUniformLocation(const std::string& name) const
