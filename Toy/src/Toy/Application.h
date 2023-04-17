@@ -9,14 +9,8 @@
 
 #include "Toy/ImGui/ImGuiLayer.h"
 
-#include "Toy/Renderer/Shader.h"
-#include "Toy/Renderer/Buffer.h"
-#include "Toy/Renderer/VertexArray.h"
-
-#include "Toy/Renderer/OrthographicCamera.h"
-
 namespace Toy{
-	class TOY_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -39,14 +33,6 @@ namespace Toy{
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<Shader> m_BlueShader;
-
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
