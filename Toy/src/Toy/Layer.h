@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Toy/Core.h"
+#include "Toy/Core/Timestep.h"
 #include "Toy/Events/Event.h"
 
 namespace Toy
@@ -13,7 +14,7 @@ namespace Toy
 
         virtual void OnAttach();
         virtual void OnDetach();
-        virtual void OnUpdate();
+        virtual void OnUpdate(Timestep timestep);
         virtual void OnImGuiRender() {};
         virtual void OnEvent(Event& event) {}
 

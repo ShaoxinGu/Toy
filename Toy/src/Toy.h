@@ -6,6 +6,8 @@
 #include "Toy/Layer.h"
 #include "Toy/Log.h"
 
+#include "Toy/Core/Timestep.h"
+
 #include "Toy/Input.h"
 #include "Toy/KeyCodes.h"
 #include "Toy/MouseButtonCodes.h"

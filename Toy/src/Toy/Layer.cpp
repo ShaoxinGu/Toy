@@ -16,7 +16,7 @@ namespace Toy{
     void Layer::OnDetach()
     {
     }
-    void Layer::OnUpdate()
+    void Layer::OnUpdate(Timestep timestep)
     {
     }
 }

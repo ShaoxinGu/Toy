@@ -114,21 +114,21 @@ public:
 		m_BlueShader.reset(new Toy::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Toy::Timestep timestep) override
 	{
 		if (Toy::Input::IsKeyPressed(TOY_KEY_LEFT) || Toy::Input::IsKeyPressed(TOY_KEY_A))
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * timestep;
 		else if (Toy::Input::IsKeyPressed(TOY_KEY_RIGHT) || Toy::Input::IsKeyPressed(TOY_KEY_D))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * timestep;
 		else if (Toy::Input::IsKeyPressed(TOY_KEY_UP) || Toy::Input::IsKeyPressed(TOY_KEY_W))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * timestep;
 		else if (Toy::Input::IsKeyPressed(TOY_KEY_DOWN) || Toy::Input::IsKeyPressed(TOY_KEY_S))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * timestep;
 
-		if (Toy::Input::IsKeyPressed(TOY_KEY_E))
-			m_CameraRotation += m_CameraRotateSpeed;
-		else if(Toy::Input::IsKeyPressed(TOY_KEY_Q))
-			m_CameraRotation -= m_CameraRotateSpeed;
+		if (Toy::Input::IsKeyPressed(TOY_KEY_Q))
+			m_CameraRotation += m_CameraRotateSpeed * timestep;
+		else if(Toy::Input::IsKeyPressed(TOY_KEY_E))
+			m_CameraRotation -= m_CameraRotateSpeed * timestep;
 
 		Toy::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Toy::RenderCommand::Clear();
@@ -164,9 +164,9 @@ private:
 
 	Toy::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraMoveSpeed = 5.0f;
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotateSpeed = 2.0f;
+	float m_CameraRotateSpeed = 180.0f;
 };
 
 class Sandbox : public Toy::Application
