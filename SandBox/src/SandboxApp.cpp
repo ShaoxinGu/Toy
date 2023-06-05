@@ -20,7 +20,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0,
 		};
 
-		std::shared_ptr<Toy::VertexBuffer> m_VertexBuffer;
+		Toy::Ref<Toy::VertexBuffer> m_VertexBuffer;
 		m_VertexBuffer.reset(Toy::VertexBuffer::Create(vertices, sizeof(vertices)));
 		Toy::BufferLayout layout = {
 			{ Toy::ShaderDataType::Float3, "a_Position" },
@@ -30,7 +30,7 @@ public:
 		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 
 		unsigned int indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Toy::IndexBuffer> indexBuffer;
+		Toy::Ref<Toy::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Toy::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -43,7 +43,7 @@ public:
 			-0.5f,  0.5f, 0.0f
 		};
 
-		std::shared_ptr<Toy::VertexBuffer> squareVB;
+		Toy::Ref<Toy::VertexBuffer> squareVB;
 		squareVB.reset(Toy::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 			{ Toy::ShaderDataType::Float3, "a_Position" }
@@ -51,7 +51,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Toy::IndexBuffer> squareIB;
+		Toy::Ref<Toy::IndexBuffer> squareIB;
 		squareIB.reset(Toy::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -186,11 +186,11 @@ public:
 	}
 
 private:
-	std::shared_ptr<Toy::Shader> m_Shader;
-	std::shared_ptr<Toy::Shader> m_FlatColorShader;
+	Toy::Ref<Toy::Shader> m_Shader;
+	Toy::Ref<Toy::Shader> m_FlatColorShader;
 
-	std::shared_ptr<Toy::VertexArray> m_VertexArray;
-	std::shared_ptr<Toy::VertexArray> m_SquareVA;
+	Toy::Ref<Toy::VertexArray> m_VertexArray;
+	Toy::Ref<Toy::VertexArray> m_SquareVA;
 
 	Toy::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
