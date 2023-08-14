@@ -3,6 +3,7 @@
 
 #include "Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
+#include "Platform/Vulkan/VulkanShader.h"
 
 namespace Toy {
 
@@ -16,6 +17,8 @@ namespace Toy {
 			return nullptr;
 		case RendererAPI::API::OpenGL:
 			return new OpenGLShader(vertexSrc, fragmentSrc);
+		case RendererAPI::API::Vulkan:
+			return new VulkanShader(vertexSrc, fragmentSrc);
 		}
 
 		TOY_CORE_ASSERT(false, "Unknown RendererAPI!");
