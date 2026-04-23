@@ -10,3 +10,12 @@
 [submodule "Toy/vendor/GLFW"]
 	path = Toy/vendor/GLFW
 	url = https://github.com/ShaoxinGu/glfw.git
+[submodule "Toy/vendor/bgfx"]
+	path = Toy/vendor/bgfx
+	url = https://github.com/bkaradzic/bgfx.git
+[submodule "Toy/vendor/bx"]
+	path = Toy/vendor/bx
+	url = https://github.com/bkaradzic/bx.git
+[submodule "Toy/vendor/bimg"]
+	path = Toy/vendor/bimg
+	url = https://github.com/bkaradzic/bimg.git
